@@ -1,0 +1,54 @@
+{
+  "name": "@nachoswap/sdk",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "🛠 An SDK for building applications on top of Nachoswap.",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/GriffinFinance/griffin-swap-sdk.git",
+  "keywords": [
+    "nachoswap",
+    "sdk"
+  ],
+  "module": "dist/sdk.esm.js",
+  "scripts": {
+    "lint": "tsdx lint src test",
+    "build": "tsdx build",
+    "start": "tsdx watch",
+    "test": "tsdx test",
+    "prepublishOnly": "tsdx build"
+  },
+  "dependencies": {
+    "big.js": "^6.1.1",
+    "decimal.js-light": "^2.5.1",
+    "jsbi": "^4.1.0",
+    "tiny-invariant": "^1.2.0",
+    "tiny-warning": "^1.0.3",
+    "toformat": "^2.0.0"
+  },
+  "devDependencies": {
+    "@ethersproject/address": "^5.5.0",
+    "@ethersproject/contracts": "^5.5.0",
+    "@ethersproject/networks": "^5.5.1",
+    "@ethersproject/providers": "^5.5.1",
+    "@ethersproject/solidity": "^5.5.0",
+    "@types/big.js": "^6.1.2",
+    "@types/jest": "^27.0.3",
+    "babel-plugin-transform-jsbi-to-bigint": "^1.4.0",
+    "tsdx": "^0.14.1"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}
