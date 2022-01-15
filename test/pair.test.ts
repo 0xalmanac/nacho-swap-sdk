@@ -2,11 +2,11 @@ import { ChainId, Token, Pair, TokenAmount, WETH, Price } from '../src'
 
 describe('Pair', () => {
     const NACHO = new Token(ChainId.MAINNET, '0xcD86152047e800d67BDf00A4c635A8B6C0e5C4c2', 18, 'NACHO', 'NACHO')
-    const wETH = new Token(ChainId.MAINNET, '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619', 18, 'WETH', 'Wrapped Ether')
+    const wETH = new Token(ChainId.MAINNET, '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619', 18, 'WETH', 'Wrapped Ether')
 
     describe('#getAddress', () => {
         it('returns the correct address', () => {
-            expect(Pair.getAddress(NACHO, wETH)).toEqual('0x71C1f042255D43fef803f3bb2903cc91e8664571')
+            expect(Pair.getAddress(NACHO, wETH)).toEqual('0x8D25fec513309F2d329d99d6F677D46C831FDEe8')
         })
     })
 
