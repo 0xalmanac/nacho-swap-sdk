@@ -34,7 +34,7 @@ var _SOLIDITY_TYPE_MAXIMA;
   Rounding[Rounding["ROUND_UP"] = 2] = "ROUND_UP";
 })(exports.Rounding || (exports.Rounding = {}));
 
-var FACTORY_ADDRESS = '0x43fC699B8588BeEB1e05027461b0030235a546bd';
+var FACTORY_ADDRESS = '0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32';
 var INIT_CODE_HASH = '0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f';
 var MINIMUM_LIQUIDITY = /*#__PURE__*/JSBI.BigInt(1000); // exports for internal consumption
 
@@ -404,7 +404,7 @@ function Currency(decimals, symbol, name) {
  * The only instance of the base class `Currency`.
  */
 
-Currency.ETHER = /*#__PURE__*/new Currency(18, 'BNB', 'BNB');
+Currency.ETHER = /*#__PURE__*/new Currency(18, 'MATIC', 'MATIC');
 var ETHER = Currency.ETHER;
 
 var _WETH;
@@ -471,7 +471,7 @@ function currencyEquals(currencyA, currencyB) {
     return currencyA === currencyB;
   }
 }
-var WETH = (_WETH = {}, _WETH[exports.ChainId.MAINNET] = /*#__PURE__*/new Token(exports.ChainId.MAINNET, '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270', 18, 'WMATIC', 'Wrapped MATIC', 'https://polygon.technology/'), _WETH[exports.ChainId.TESTNET] = /*#__PURE__*/new Token(exports.ChainId.TESTNET, '0xaE8E19eFB41e7b96815649A6a60785e1fbA84C1e', 18, 'WBNB', 'Wrapped BNB', 'https://www.binance.org'), _WETH);
+var WETH = (_WETH = {}, _WETH[exports.ChainId.MAINNET] = /*#__PURE__*/new Token(exports.ChainId.MAINNET, '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270', 18, 'WMATIC', 'Wrapped MATIC', 'https://polygon.technology/'), _WETH[exports.ChainId.TESTNET] = /*#__PURE__*/new Token(exports.ChainId.TESTNET, '0xaE8E19eFB41e7b96815649A6a60785e1fbA84C1e', 18, 'WBNB', 'Wrapped BNB', 'https://www.binance.org'), _WETH);
 
 var _toSignificantRoundin, _toFixedRounding;
 var Decimal = /*#__PURE__*/toFormat(_Decimal);
