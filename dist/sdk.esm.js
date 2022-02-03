@@ -36,7 +36,7 @@ var Rounding;
 
 var FACTORY_ADDRESS = '0xB7C02E9970fb5e66E4b2931646853624cA138554'; //CHANGE FOR NSWAP
 
-var INIT_CODE_HASH = '0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f';
+var INIT_CODE_HASH = '0x37fb8ae45dafc12eeb32a0f4ac0c972793276a17c2e6971dea624feda54b2408';
 var MINIMUM_LIQUIDITY = /*#__PURE__*/JSBI.BigInt(1000); // exports for internal consumption
 
 var ZERO = /*#__PURE__*/JSBI.BigInt(0);
