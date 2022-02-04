@@ -34,7 +34,7 @@ var Rounding;
   Rounding[Rounding["ROUND_UP"] = 2] = "ROUND_UP";
 })(Rounding || (Rounding = {}));
 
-var FACTORY_ADDRESS = '0x07287263c15473703d329D4f641223582a08fF00'; //CHANGE FOR NSWAP
+var FACTORY_ADDRESS = '0xFd0B3960d3678B864376612a1C9D080a5b546395'; //CHANGE FOR NSWAP
 
 var INIT_CODE_HASH = '0x0f316c4111d246eee4e7ca6ffd02ca779ad3cd7a0da1f59a95878ac6b6348ea2';
 var MINIMUM_LIQUIDITY = /*#__PURE__*/JSBI.BigInt(1000); // exports for internal consumption
