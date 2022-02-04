@@ -19,7 +19,7 @@ export enum Rounding {
   ROUND_UP
 }
 
-export const FACTORY_ADDRESS = '0xFd0B3960d3678B864376612a1C9D080a5b546395'; //CHANGE FOR NSWAP
+export const FACTORY_ADDRESS = '0x1B44bf43111A26206F9735319A0c438dd1c030b2';
 
 export const INIT_CODE_HASH = '0x0f316c4111d246eee4e7ca6ffd02ca779ad3cd7a0da1f59a95878ac6b6348ea2'
 
@@ -33,7 +33,7 @@ export const THREE = JSBI.BigInt(3)
 export const FIVE = JSBI.BigInt(5)
 export const TEN = JSBI.BigInt(10)
 export const _100 = JSBI.BigInt(100)
-export const FEES_NUMERATOR = JSBI.BigInt(997) //CHANGE FOR NSWAP to 995
+export const FEES_NUMERATOR = JSBI.BigInt(997)
 export const FEES_DENOMINATOR = JSBI.BigInt(10000)
 
 export enum SolidityType {

@@ -34,8 +34,7 @@ var Rounding;
   Rounding[Rounding["ROUND_UP"] = 2] = "ROUND_UP";
 })(Rounding || (Rounding = {}));
 
-var FACTORY_ADDRESS = '0xFd0B3960d3678B864376612a1C9D080a5b546395'; //CHANGE FOR NSWAP
-
+var FACTORY_ADDRESS = '0x1B44bf43111A26206F9735319A0c438dd1c030b2';
 var INIT_CODE_HASH = '0x0f316c4111d246eee4e7ca6ffd02ca779ad3cd7a0da1f59a95878ac6b6348ea2';
 var MINIMUM_LIQUIDITY = /*#__PURE__*/JSBI.BigInt(1000); // exports for internal consumption
 
@@ -46,8 +45,7 @@ var THREE = /*#__PURE__*/JSBI.BigInt(3);
 var FIVE = /*#__PURE__*/JSBI.BigInt(5);
 var TEN = /*#__PURE__*/JSBI.BigInt(10);
 var _100 = /*#__PURE__*/JSBI.BigInt(100);
-var FEES_NUMERATOR = /*#__PURE__*/JSBI.BigInt(997); //CHANGE FOR NSWAP to 995
-
+var FEES_NUMERATOR = /*#__PURE__*/JSBI.BigInt(997);
 var FEES_DENOMINATOR = /*#__PURE__*/JSBI.BigInt(10000);
 var SolidityType;
 
