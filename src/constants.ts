@@ -19,8 +19,12 @@ export enum Rounding {
   ROUND_UP
 }
 
-export const FACTORY_ADDRESS = '0x1B44bf43111A26206F9735319A0c438dd1c030b2';
+// QS for migration
+export const QS_FACTORY_ADDRESS = '0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32';
+export const QS_INIT_CODE_HASH = '0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f'
 
+// NachoSwap
+export const FACTORY_ADDRESS = '0x1B44bf43111A26206F9735319A0c438dd1c030b2';
 export const INIT_CODE_HASH = '0x0f316c4111d246eee4e7ca6ffd02ca779ad3cd7a0da1f59a95878ac6b6348ea2'
 
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000)
