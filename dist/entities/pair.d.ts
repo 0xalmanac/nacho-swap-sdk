@@ -6,7 +6,8 @@ export declare class Pair {
     readonly liquidityToken: Token;
     readonly isQuickswap: boolean;
     private readonly tokenAmounts;
-    static getAddress(tokenA: Token, tokenB: Token, quickswap?: boolean): string;
+    static getAddress(tokenA: Token, tokenB: Token): string;
+    static getQuickswapAddress(tokenA: Token, tokenB: Token): string;
     constructor(tokenAmountA: TokenAmount, tokenAmountB: TokenAmount, quickswap?: boolean);
     /**
      * Returns true if the token is either token0 or token1

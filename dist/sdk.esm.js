@@ -794,6 +794,7 @@ var Price = /*#__PURE__*/function (_Fraction) {
 }(Fraction);
 
 var PAIR_ADDRESS_CACHE = {};
+var QS_PAIR_ADDRESS_CACHE = {};
 var Pair = /*#__PURE__*/function () {
   function Pair(tokenAmountA, tokenAmountB, quickswap) {
     if (quickswap === void 0) {
@@ -804,26 +805,36 @@ var Pair = /*#__PURE__*/function () {
     this.isQuickswap = quickswap;
     var tokenAmounts = tokenAmountA.token.sortsBefore(tokenAmountB.token) // does safety checks
     ? [tokenAmountA, tokenAmountB] : [tokenAmountB, tokenAmountA];
-    this.liquidityToken = new Token(tokenAmounts[0].token.chainId, Pair.getAddress(tokenAmounts[0].token, tokenAmounts[1].token, this.isQuickswap), 18, 'Nacho-LP', 'Nacho LPs');
+    this.liquidityToken = new Token(tokenAmounts[0].token.chainId, quickswap ? Pair.getQuickswapAddress(tokenAmounts[0].token, tokenAmounts[1].token) : Pair.getAddress(tokenAmounts[0].token, tokenAmounts[1].token), 18, 'Nacho-LP', 'Nacho LPs');
     this.tokenAmounts = tokenAmounts;
   }
 
-  Pair.getAddress = function getAddress(tokenA, tokenB, quickswap) {
+  Pair.getAddress = function getAddress(tokenA, tokenB) {
     var _PAIR_ADDRESS_CACHE, _PAIR_ADDRESS_CACHE$t;
-
-    if (quickswap === void 0) {
-      quickswap = false;
-    }
 
     var tokens = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA]; // does safety checks
 
     if (((_PAIR_ADDRESS_CACHE = PAIR_ADDRESS_CACHE) == null ? void 0 : (_PAIR_ADDRESS_CACHE$t = _PAIR_ADDRESS_CACHE[tokens[0].address]) == null ? void 0 : _PAIR_ADDRESS_CACHE$t[tokens[1].address]) === undefined) {
       var _PAIR_ADDRESS_CACHE2, _extends2, _extends3;
 
-      PAIR_ADDRESS_CACHE = _extends({}, PAIR_ADDRESS_CACHE, (_extends3 = {}, _extends3[tokens[0].address] = _extends({}, (_PAIR_ADDRESS_CACHE2 = PAIR_ADDRESS_CACHE) == null ? void 0 : _PAIR_ADDRESS_CACHE2[tokens[0].address], (_extends2 = {}, _extends2[tokens[1].address] = getCreate2Address(quickswap ? QS_FACTORY_ADDRESS : FACTORY_ADDRESS, keccak256(['bytes'], [pack(['address', 'address'], [tokens[0].address, tokens[1].address])]), quickswap ? QS_INIT_CODE_HASH : INIT_CODE_HASH), _extends2)), _extends3));
+      PAIR_ADDRESS_CACHE = _extends({}, PAIR_ADDRESS_CACHE, (_extends3 = {}, _extends3[tokens[0].address] = _extends({}, (_PAIR_ADDRESS_CACHE2 = PAIR_ADDRESS_CACHE) == null ? void 0 : _PAIR_ADDRESS_CACHE2[tokens[0].address], (_extends2 = {}, _extends2[tokens[1].address] = getCreate2Address(FACTORY_ADDRESS, keccak256(['bytes'], [pack(['address', 'address'], [tokens[0].address, tokens[1].address])]), INIT_CODE_HASH), _extends2)), _extends3));
     }
 
     return PAIR_ADDRESS_CACHE[tokens[0].address][tokens[1].address];
+  };
+
+  Pair.getQuickswapAddress = function getQuickswapAddress(tokenA, tokenB) {
+    var _QS_PAIR_ADDRESS_CACH, _QS_PAIR_ADDRESS_CACH2;
+
+    var tokens = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA]; // does safety checks
+
+    if (((_QS_PAIR_ADDRESS_CACH = QS_PAIR_ADDRESS_CACHE) == null ? void 0 : (_QS_PAIR_ADDRESS_CACH2 = _QS_PAIR_ADDRESS_CACH[tokens[0].address]) == null ? void 0 : _QS_PAIR_ADDRESS_CACH2[tokens[1].address]) === undefined) {
+      var _QS_PAIR_ADDRESS_CACH3, _extends4, _extends5;
+
+      QS_PAIR_ADDRESS_CACHE = _extends({}, QS_PAIR_ADDRESS_CACHE, (_extends5 = {}, _extends5[tokens[0].address] = _extends({}, (_QS_PAIR_ADDRESS_CACH3 = QS_PAIR_ADDRESS_CACHE) == null ? void 0 : _QS_PAIR_ADDRESS_CACH3[tokens[0].address], (_extends4 = {}, _extends4[tokens[1].address] = getCreate2Address(QS_FACTORY_ADDRESS, keccak256(['bytes'], [pack(['address', 'address'], [tokens[0].address, tokens[1].address])]), QS_INIT_CODE_HASH), _extends4)), _extends5));
+    }
+
+    return QS_PAIR_ADDRESS_CACHE[tokens[0].address][tokens[1].address];
   }
   /**
    * Returns true if the token is either token0 or token1

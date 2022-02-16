@@ -24,13 +24,14 @@ import { InsufficientReservesError, InsufficientInputAmountError } from '../erro
 import { Token } from './token'
 
 let PAIR_ADDRESS_CACHE: { [token0Address: string]: { [token1Address: string]: string } } = {}
+let QS_PAIR_ADDRESS_CACHE: { [token0Address: string]: { [token1Address: string]: string } } = {}
 
 export class Pair {
   public readonly liquidityToken: Token
   public readonly isQuickswap: boolean = false
   private readonly tokenAmounts: [TokenAmount, TokenAmount]
 
-  public static getAddress(tokenA: Token, tokenB: Token, quickswap: boolean = false): string {
+  public static getAddress(tokenA: Token, tokenB: Token): string {
     const tokens = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
 
     if (PAIR_ADDRESS_CACHE?.[tokens[0].address]?.[tokens[1].address] === undefined) {
@@ -39,15 +40,35 @@ export class Pair {
         [tokens[0].address]: {
           ...PAIR_ADDRESS_CACHE?.[tokens[0].address],
           [tokens[1].address]: getCreate2Address(
-            quickswap ? QS_FACTORY_ADDRESS : FACTORY_ADDRESS,
+            FACTORY_ADDRESS,
             keccak256(['bytes'], [pack(['address', 'address'], [tokens[0].address, tokens[1].address])]),
-            quickswap ? QS_INIT_CODE_HASH : INIT_CODE_HASH
+            INIT_CODE_HASH
           ),
         },
       }
     }
 
     return PAIR_ADDRESS_CACHE[tokens[0].address][tokens[1].address]
+  }
+
+  public static getQuickswapAddress(tokenA: Token, tokenB: Token): string {
+    const tokens = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
+
+    if (QS_PAIR_ADDRESS_CACHE?.[tokens[0].address]?.[tokens[1].address] === undefined) {
+      QS_PAIR_ADDRESS_CACHE = {
+        ...QS_PAIR_ADDRESS_CACHE,
+        [tokens[0].address]: {
+          ...QS_PAIR_ADDRESS_CACHE?.[tokens[0].address],
+          [tokens[1].address]: getCreate2Address(
+            QS_FACTORY_ADDRESS,
+            keccak256(['bytes'], [pack(['address', 'address'], [tokens[0].address, tokens[1].address])]),
+            QS_INIT_CODE_HASH
+          ),
+        },
+      }
+    }
+
+    return QS_PAIR_ADDRESS_CACHE[tokens[0].address][tokens[1].address]
   }
 
   public constructor(tokenAmountA: TokenAmount, tokenAmountB: TokenAmount, quickswap: boolean = false) {
@@ -57,7 +78,8 @@ export class Pair {
       : [tokenAmountB, tokenAmountA]
     this.liquidityToken = new Token(
       tokenAmounts[0].token.chainId,
-      Pair.getAddress(tokenAmounts[0].token, tokenAmounts[1].token, this.isQuickswap),
+      quickswap ? Pair.getQuickswapAddress(tokenAmounts[0].token, tokenAmounts[1].token) :
+      Pair.getAddress(tokenAmounts[0].token, tokenAmounts[1].token),
       18,
       'Nacho-LP',
       'Nacho LPs'
